@@ -30,11 +30,17 @@ def rankWords(tableData,NumberOfRows,BlacklistWords):
 
 def main(
   Welcome: str = print("Welcome to WordRanker."),
-  NumberOfRows: int = input('Please enter # of rows: '),
+  NumberOfRows: str = input('Please enter # of rows: '),
   BlacklistPrompt: str = print("Please add any words you'd like to blacklist, seperated by a , \n Ex. Bing,Bill"),
   BlacklistWords: str = input("BlacklistWords: ")
 ):
-  NumberOfRows = int(NumberOfRows)
+  if NumberOfRows.isdigit(): 
+    if int(NumberOfRows) > 0:
+     NumberOfRows = int(NumberOfRows)
+    else:
+     NumberOfRows = 10 
+  else:
+     NumberOfRows = 10 
   tableData=fetchWords()
   tableRank=rankWords(tableData,NumberOfRows,BlacklistWords)
   ##Now print the table data with tabulate as below
